@@ -12,37 +12,26 @@ function validar(){
     console.log(vApellido)
     let eErrorApellido = document.getElementById("errorApellido")
 
-    if (vNombre.length==0){
+
+    validarLargoMinimo(eNombre,vNombre,eErrorNombre)
+    validarLargoMinimo(eApellido,vApellido,eErrorApellido)
+
+}
+function validarLargoMinimo(elemento,valor,eError){
+    if (valor.length==0){
         console.log("debes completar este campo")
     }
-    else if(vNombre.length > 3){
+    else if(valor.length >= 3){
         console.log("Cumple")
-        eErrorNombre.innerText=""  
-        eNombre.style.backgroundColor = "green"
+        eError.innerText=""  
+        elemento.style.backgroundColor = "green"
+        elemento.style.color = "white"
     }
     else{
         console.log("error pocos caracteres")
         alert("debes ingresar al menos 3 caracteres")
-        eErrorNombre.innerText="debes ingresar 3 caracteres como minimo!"
-        eNombre.style.backgroundColor = "red"
-        eNombre.style.color="white"
+        eError.innerText="debes ingresar 3 caracteres como minimo!"
+        elemento.style.backgroundColor = "red"
+        elemento.style.color="white"
     }
-
-
-    if (vApellido.length==0){
-        console.log("debes completar este campo")
-    }
-    else if(vApellido.length > 3){
-        console.log("Cumple")
-        eErrorApellido.innerText=""  
-        eApellido.style.backgroundColor = "green"
-    }
-    else{
-        console.log("error pocos caracteres")
-        alert("debes ingresar al menos 3 caracteres")
-        eErrorApellido.innerText="debes ingresar 3 caracteres como minimo!"
-        eApellido.style.backgroundColor = "red"
-        eApellido.style.color="white"
-    }
-
 }
