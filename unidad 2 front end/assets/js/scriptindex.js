@@ -32,6 +32,7 @@ function validarFormulario() {
       return false;
     }
     limpiarError(el, error);
+    marcarError(el, true); // Marcar como correcto
     return true;
   }
   
@@ -45,6 +46,7 @@ function validarFormulario() {
       return false;
     }
     limpiarError(el, error);
+    marcarError(el, true); // Marcar como correcto
     return true;
   }
   
@@ -59,6 +61,7 @@ function validarFormulario() {
       return false;
     }
     limpiarError(el, error);
+    marcarError(el, true); // Marcar como correcto
     return true;
   }
   
@@ -73,6 +76,7 @@ function validarFormulario() {
       return false;
     }
     limpiarError(el, error);
+    marcarError(el, true); // Marcar como correcto
     return true;
   }
   
@@ -83,6 +87,7 @@ function validarFormulario() {
     try {
       new URL(valor);
       limpiarError(el, error);
+      marcarError(el, true); // Marcar como correcto
       return true;
     } catch {
       error.innerText = "URL no válida.";
@@ -102,6 +107,7 @@ function validarFormulario() {
       return false;
     }
     limpiarError(el, error);
+    marcarError(el, true); // Marcar como correcto
     return true;
   }
   
@@ -115,6 +121,7 @@ function validarFormulario() {
       return false;
     }
     limpiarError(el, error);
+    marcarError(el, true); // Marcar como correcto
     return true;
   }
   
@@ -128,6 +135,7 @@ function validarFormulario() {
       return false;
     }
     limpiarError(el, error);
+    marcarError(el, true); // Marcar como correcto
     return true;
   }
   
@@ -136,9 +144,11 @@ function validarFormulario() {
     const error = document.getElementById(errorId);
     if (!el.checked) {
       error.innerText = "Debe aceptar los términos.";
+      marcarError(el);
       return false;
     }
     error.innerText = "";
+    marcarError(el, true); // Marcar como correcto
     return true;
   }
   
@@ -148,6 +158,7 @@ function validarFormulario() {
     for (let radio of radios) {
       if (radio.checked) {
         error.innerText = "";
+        marcarError(radio, true); // Marcar como correcto
         return true;
       }
     }
@@ -155,10 +166,16 @@ function validarFormulario() {
     return false;
   }
   
-  function marcarError(el) {
-    el.style.backgroundColor = "red";
-    el.style.color = "white";
+  function marcarError(el, esValido = false) {
+    if (esValido) {
+      el.style.backgroundColor = "green";
+      el.style.color = "white";
+    } else {
+      el.style.backgroundColor = "red";
+      el.style.color = "white";
+    }
   }
+  
   
   function limpiarError(el, error) {
     el.style.backgroundColor = "";
